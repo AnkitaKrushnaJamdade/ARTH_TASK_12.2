@@ -1,0 +1,26 @@
+- hosts: localhost
+  tasks:
+  - name: launching loadbalancer
+    ec2:
+        aws_access_key: "Access Key"
+        aws_secret_key: "Secret Key"
+        count: 1
+        instance_type: t2.micro
+        image: ami-0e2e44c03b85f58b3
+        group_id: sg-040402e1934f83539
+        region: ap-southeast-1
+        instance_tags: '{"Name":"loadbalancer"}'
+        wait: yes
+        key_name: For_Task_4_real
+  - name: "launching 2 webservers"
+    ec2:
+        aws_access_key: "Access Key"
+        aws_secret_key: "Seccret Key"
+        count: 2
+        instance_type: t2.micro
+        image: ami-0e2e44c03b85f58b3
+        group_id: sg-040402e1934f83539
+        region: ap-southeast-1
+        instance_tags: '{"Name":"Webserver"}'
+        wait: yes
+        key_name: For_Task_4_real
