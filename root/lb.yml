@@ -1,0 +1,18 @@
+- hosts: tag_Name_loadbalancer
+  vars:
+          ip: "8081"
+  tasks:
+          - name: "Installing Haproxy"
+            package:
+                  name: "haproxy"
+                  state: present
+
+          - name: "Changing the IP's conf file"
+            template:
+                    src: "/etc/haproxy/haproxy.cfg"
+                    dest: "/etc/haproxy/haproxy.cfg"
+
+          - name: "Restarting haproxy"
+            service:
+                    name: "haproxy"
+                    state: restarted
