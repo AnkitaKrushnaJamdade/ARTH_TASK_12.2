@@ -1,0 +1,18 @@
+- hosts: tag_Name_Webserver
+  tasks:
+          - name: "Installing httpd"
+            package:
+                    name: "httpd"
+                    state: present
+
+          - name: "Creating index.html file"
+            template:
+                    src: /root/index.html
+                    dest: /var/www/html/
+                    mode: 0644
+
+          - name: "Starting httpd"
+            service:
+                    name: "httpd"
+                    state: started
+                    enabled: yes
